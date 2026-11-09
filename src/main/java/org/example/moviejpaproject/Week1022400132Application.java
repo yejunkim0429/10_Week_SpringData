@@ -2,8 +2,10 @@ package org.example.moviejpaproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class Week1022400132Application {
 
     public static void main(String[] args) {

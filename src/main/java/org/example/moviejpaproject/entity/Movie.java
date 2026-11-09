@@ -1,9 +1,14 @@
 package org.example.moviejpaproject.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity // Q1. @Entity, @Id, @GeneratedValue는 각각 어떤 역할을 하는가? 이 클래스를 jpa가 관리하는 entity로 지정한다는 뜻이다.
 @Table(name = "movies") // 연결할 데이터베이스의 이름을 movies로 한다는 뜻이다.
+@EntityListeners(AuditingEntityListener.class)
 public class Movie {
 
     @Id // Q1. @Entity, @Id, @GeneratedValue는 각각 어떤 역할을 하는가? 영화를 만들때 각 영화를 구분해주는 기본 키를 생성해준다.
@@ -70,5 +75,21 @@ public class Movie {
 
     public void setReleaseYear(Integer releaseYear) {
         this.releaseYear = releaseYear;
+    }
+
+    @CreatedDate
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 }
