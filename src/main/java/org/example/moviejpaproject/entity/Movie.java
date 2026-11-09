@@ -2,15 +2,15 @@ package org.example.moviejpaproject.entity;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "movies")
+@Entity // Q1. @Entity, @Id, @GeneratedValue는 각각 어떤 역할을 하는가? 이 클래스를 jpa가 관리하는 entity로 지정한다는 뜻이다.
+@Table(name = "movies") // 연결할 데이터베이스의 이름을 movies로 한다는 뜻이다.
 public class Movie {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // Q1. @Entity, @Id, @GeneratedValue는 각각 어떤 역할을 하는가? 영화를 만들때 각 영화를 구분해주는 기본 키를 생성해준다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Q1. @Entity, @Id, @GeneratedValue는 각각 어떤 역할을 하는가? db의 자동 증가 기능으로서 id를 생성해준다.
     private Long id;
-
-    @Column(nullable = false, length = 100)
+    // Q2. Entity 클래스와 데이터베이스 테이블은 어떻게 연결되는가? 자바에서 만든 movie 객체를 db에서 movie테이블에 저장하고 꺼낼 수 있도록 연결한다.
+    @Column(nullable = false, length = 100) // 각각 연결되는 컬럼의 이름 길이 null 여부 허용 같은 것들을 설정할 수 있다.
     private String title;
 
     @Column(length = 100)
